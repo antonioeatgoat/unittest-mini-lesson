@@ -22,7 +22,8 @@
   },
   "autoload": {
     "psr-4": {
-      "AntonioEatGoat\\UnittestLesson\\": "src/"
+      "AntonioEatGoat\\UnittestLesson\\": "src/",
+      "AntonioEatGoat\\UnittestLesson\\Test\\": "tests/"
     }
   }
 }
