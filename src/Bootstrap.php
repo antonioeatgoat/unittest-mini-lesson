@@ -5,13 +5,10 @@ namespace AntonioEatGoat\UnittestLesson;
 class Bootstrap {
 
 	public static function init() {
-		$math = new Math( 5, 2 );
+		$posts_manager = new MathController();
 
-		try {
-			wp_die( $math->divide() );
-		} catch ( \RuntimeException $e ) {
-			wp_die( $e->getMessage() );
-		}
+		$posts_manager->init_hooks();
+
 	}
 
 }
