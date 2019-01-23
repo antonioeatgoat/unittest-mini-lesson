@@ -58,9 +58,9 @@ class MathController {
 			$operand1 = $operand1 * 2;
 		}
 
-		$math = (float) apply_filters( 'antonioeatgoat/calculate_return_value', $this->math_factory->create( $operand1, $operand2 ) );
+		$math = $this->math_factory->create( $operand1, $operand2 );
 
-		return $math->divide();
+		return (float) apply_filters( 'antonioeatgoat/calculate_return_value', $math->divide(), $operand1, $operand2 );
 	}
 
 }
