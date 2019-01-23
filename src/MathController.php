@@ -54,6 +54,10 @@ class MathController {
 		$operand1 = $this->operands_fetcher->fetch_operand1();
 		$operand2 = $this->operands_fetcher->fetch_operand2();
 
+		if ( current_user_can( 'manage_options' ) ) {
+			$operand1 = $operand1 * 2;
+		}
+
 		$math = $this->math_factory->create( $operand1, $operand2 );
 
 		return $math->divide();
