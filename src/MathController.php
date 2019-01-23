@@ -11,12 +11,18 @@ class MathController {
 	private $math_factory;
 
 	/**
+	 * @var OperandsFetcher
+	 */
+	private $operands_fetcher;
+
+	/**
 	 * MathController constructor.
 	 *
 	 * @param MathFactory $math_factory
 	 */
-	public function __construct( MathFactory $math_factory ) {
-		$this->math_factory = $math_factory;
+	public function __construct( MathFactory $math_factory, OperandsFetcher $operands_fetcher ) {
+		$this->math_factory     = $math_factory;
+		$this->operands_fetcher = $operands_fetcher;
 	}
 
 	/**
@@ -44,31 +50,13 @@ class MathController {
 	 *
 	 * @throws \RuntimeException
 	 */
-	public function calculate( ):float {
-		$operand1 = $this->fetch_operand1();
-		$operand2 = $this->fetch_operand2();
+	public function calculate(): float {
+		$operand1 = $this->operands_fetcher->fetch_operand1();
+		$operand2 = $this->operands_fetcher->fetch_operand2();
 
 		$math = $this->math_factory->create( $operand1, $operand2 );
 
 		return $math->divide();
-	}
-
-	/**
-	 * Let's pretend there is some logic here that fetches a relevant value
-	 *
-	 * @return int
-	 */
-	private function fetch_operand1(): int {
-		return 5;
-	}
-
-	/**
-	 * Let's pretend there is some logic here that fetches a relevant value
-	 *
-	 * @return int
-	 */
-	private function fetch_operand2() {
-		return 2;
 	}
 
 }
