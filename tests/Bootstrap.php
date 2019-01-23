@@ -1,5 +1,7 @@
 <?php
 
+namespace AntonioEatGoat\UnittestLesson\Test;
+
 use PHPUnit\Framework\TestCase;
 
 \WP_Mock::bootstrap();
