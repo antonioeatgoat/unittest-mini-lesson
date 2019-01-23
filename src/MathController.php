@@ -5,6 +5,19 @@ namespace AntonioEatGoat\UnittestLesson;
 
 class MathController {
 
+	/**
+	 * @var Math
+	 */
+	private $math_factory;
+
+	/**
+	 * MathController constructor.
+	 *
+	 * @param MathFactory $math_factory
+	 */
+	public function __construct( MathFactory $math_factory ) {
+		$this->math_factory = $math_factory;
+	}
 
 	/**
 	 * Inits the hooks of the controller
@@ -18,7 +31,7 @@ class MathController {
 	 */
 	public function display_result() {
 		try {
-			$result = $this->calculate( $this->fetch_operand1(), $this->fetch_operand2() );
+			$result = $this->calculate($this->fetch_operand1(), $this->fetch_operand2());
 		} catch ( \Exception $e ) {
 			$result = $e->getMessage();
 		}
@@ -34,8 +47,8 @@ class MathController {
 	 *
 	 * @throws \RuntimeException
 	 */
-	public function calculate( int $operand1, int $operand2 ):float {
-		$math = new Math( $operand1, $operand2 );
+	public function calculate(int $operand1, int $operand2):float {
+		$math = $this->math_factory->create( $operand1, $operand2 );
 
 		return $math->divide();
 	}
