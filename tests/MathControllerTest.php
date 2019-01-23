@@ -56,4 +56,22 @@ class MathControllerTest extends TestCase {
 
 		$this->assertEquals( 5, $math_controller->calculate() );
 	}
+
+	public function test_calculate_with_filter_usage() {
+		\WP_Mock::userFunction( 'current_user_can', [
+			'times'  => 1,
+			'args'   => 'manage_options',
+			'return' => false
+		] );
+
+		\WP_Mock::onFilter( 'antonioeatgoat/calculate_return_value' )->with( 2.5, 5, 2 )->reply( 10 );
+
+		$fetcher_mocked = \Mockery::mock( 'AntonioEatGoat\UnittestLesson\OperandsFetcher' );
+		$fetcher_mocked->shouldReceive( 'fetch_operand1' )->andReturn( 5 );
+		$fetcher_mocked->shouldReceive( 'fetch_operand2' )->andReturn( 2 );
+
+		$math_controller = new MathController( new MathFactory(), $fetcher_mocked );
+
+		$this->assertEquals( 10, $math_controller->calculate() );
+	}
 }
