@@ -31,7 +31,7 @@ class MathController {
 	 */
 	public function display_result() {
 		try {
-			$result = $this->calculate($this->fetch_operand1(), $this->fetch_operand2());
+			$result = $this->calculate();
 		} catch ( \Exception $e ) {
 			$result = $e->getMessage();
 		}
@@ -40,14 +40,14 @@ class MathController {
 	}
 
 	/**
-	 * @param int $operand1
-	 * @param int $operand2
-	 *
 	 * @return float
 	 *
 	 * @throws \RuntimeException
 	 */
-	public function calculate(int $operand1, int $operand2):float {
+	public function calculate( ):float {
+		$operand1 = $this->fetch_operand1();
+		$operand2 = $this->fetch_operand2();
+
 		$math = $this->math_factory->create( $operand1, $operand2 );
 
 		return $math->divide();
