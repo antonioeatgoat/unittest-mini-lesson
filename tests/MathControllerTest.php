@@ -4,6 +4,7 @@ namespace AntonioEatGoat\UnittestLesson\Test;
 
 use AntonioEatGoat\UnittestLesson\MathController;
 use AntonioEatGoat\UnittestLesson\MathFactory;
+use AntonioEatGoat\UnittestLesson\OperandsFetcher;
 use PHPUnit\Framework\TestCase;
 
 class MathControllerTest extends TestCase {
@@ -15,7 +16,7 @@ class MathControllerTest extends TestCase {
 			'return' => false
 		] );
 
-		$fetcher_mocked = \Mockery::mock( 'AntonioEatGoat\UnittestLesson\OperandsFetcher' );
+		$fetcher_mocked = \Mockery::mock( OperandsFetcher::class );
 		$fetcher_mocked->shouldReceive( 'fetch_operand1' )->andReturn( 5 );
 		$fetcher_mocked->shouldReceive( 'fetch_operand2' )->andReturn( 2 );
 
@@ -31,7 +32,7 @@ class MathControllerTest extends TestCase {
 			'return' => false
 		] );
 
-		$fetcher_mocked = \Mockery::mock( 'AntonioEatGoat\UnittestLesson\OperandsFetcher' );
+		$fetcher_mocked = \Mockery::mock( OperandsFetcher::class );
 		$fetcher_mocked->shouldReceive( 'fetch_operand1' )->andReturn( 5 );
 		$fetcher_mocked->shouldReceive( 'fetch_operand2' )->andReturn( 0 );
 
@@ -48,7 +49,7 @@ class MathControllerTest extends TestCase {
 			'return' => true
 		] );
 
-		$fetcher_mocked = \Mockery::mock( 'AntonioEatGoat\UnittestLesson\OperandsFetcher' );
+		$fetcher_mocked = \Mockery::mock( OperandsFetcher::class );
 		$fetcher_mocked->shouldReceive( 'fetch_operand1' )->andReturn( 5 );
 		$fetcher_mocked->shouldReceive( 'fetch_operand2' )->andReturn( 2 );
 
@@ -66,7 +67,7 @@ class MathControllerTest extends TestCase {
 
 		\WP_Mock::onFilter( 'antonioeatgoat/calculate_return_value' )->with( 2.5, 5, 2 )->reply( 10 );
 
-		$fetcher_mocked = \Mockery::mock( 'AntonioEatGoat\UnittestLesson\OperandsFetcher' );
+		$fetcher_mocked = \Mockery::mock( OperandsFetcher::class );
 		$fetcher_mocked->shouldReceive( 'fetch_operand1' )->andReturn( 5 );
 		$fetcher_mocked->shouldReceive( 'fetch_operand2' )->andReturn( 2 );
 
