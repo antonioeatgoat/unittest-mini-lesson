@@ -53,7 +53,7 @@ class Math {
 	 */
 	public function divide(): float {
 		if( 0 === $this->operand2 ) {
-			throw new \RuntimeException( 'Wrong operation: you canont divide by 0.' );
+			throw new \RuntimeException( 'Wrong operation: you cannot divide by 0.' );
 		}
 
 		return round( $this->operand1 / $this->operand2, 2 );
